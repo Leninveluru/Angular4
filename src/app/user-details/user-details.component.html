@@ -1,0 +1,73 @@
+
+<div>
+        <form  [formGroup]="myform" class="form-holder-padding-reset">
+            <div class="ui-g">
+                <div class="form-group ui-sm-6 ui-md-6 ui-lg-6 ui-xl-6" >
+                    <label>First Name</label>
+                    <input id="firstName" formControlName="firstName" type="text" pInputText class="width-100 required-input"/>
+                    <app-control-messages [control]="myform.controls.firstName"></app-control-messages>
+                </div>
+
+                <div class="form-group ui-sm-6 ui-md-6 ui-lg-6 ui-xl-6">
+                    <label>Last Name</label>
+                    <input id="lastName" formControlName="lastName" type="text" pInputText class="width-100 required-input"/>
+                    <app-control-messages [control]="myform.controls.lastName"></app-control-messages>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="form-group ui-sm-6 ui-md-6 ui-lg-6 ui-xl-6" >
+                    <label>Email</label>
+                    <input type="email" class="form-control" formControlName="email" pInputText class="width-100 required-input">
+                    <app-control-messages [control]="myform.controls.email"></app-control-messages>
+                </div>
+                <div class="form-group ui-sm-6 ui-md-6 ui-lg-6 ui-xl-6" >
+                    <label>Password</label>
+                    <input type="password" class="form-control" formControlName="password" pInputText class="width-100 required-input">
+                    <app-control-messages [control]="myform.controls.password"></app-control-messages>
+                </div>
+            </div>
+            <div class="ui-g-12" class="form-group">
+                <label>Language</label>
+                <select class="form-control" formControlName="language">
+                    <option value="">Please select a language</option>
+                    <option *ngFor="let lang of sourceList" [value]="lang">{{lang}} </option>
+                </select>
+                <!-- <control-messages [control]="myform.controls.language"></control-messages> -->
+            </div>
+            <div class="ui-g-12" class="form-group">
+                <label>Edit dropdown: </label>
+                <!-- <select class="editableBox" formControlName="editdropdown"></select> -->
+                <select>
+                    <option value="1">01:00</option>
+                    <option value="2">02:00</option>
+                    <option value="3">03:00</option>
+                    <option value="4">04:00</option>
+                    <option value="5">05:00</option>
+                    <option value="6">06:00</option>
+                    <option value="7">07:00</option>
+                    <option value="8">08:00</option>
+                    <option value="9">09:00</option>
+                </select>
+                <!-- <input class="timeTextBox" name="timebox" maxlength="5"/> -->
+            </div>
+            <div class="ui-g-12" *ngFor="let item of items">
+                    <input type="checkbox" formControlName="checkbox"
+                    [checked]="selected === item.id "
+                    [value]="item.label"
+                    (change)="selected = item.id"
+                    (click)="checkCheckBoxValue($event)"
+                    [attr.id]="item.id"/>
+                   <label [attr.for]="item.label"> {{ item.label }}</label>
+                   <!--           (click)="checkCheckBoxValue($event)" -->
+            </div>
+
+            <div class="float-right">
+                <div class="ui-g-12 ui-md-12">
+                    <button id="submitid" (click)="onSubmit($event)" type="button"
+                    class="btn btn-primary primary-btn" >Submit</button>
+                    <button id="cancelId" (click)="onReset($event)" type="button"
+                    class="btn btn-primary primary-btn">Cancel</button>
+                </div>
+            </div>
+        </form>
+</div>
